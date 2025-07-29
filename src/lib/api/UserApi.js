@@ -39,6 +39,17 @@ export const userUpdateProfile = async (token, { name }) => {
         }),
     });
 };
+
+export const userLogout = async (token) => {
+    return await fetch(`${import.meta.env.VITE_API_PATH}/users/logout`, {
+        method: "DELETE",
+        headers: {
+            Accept: "application/json",
+            Authorization: token,
+        },
+    });
+};
+
 export const userUpdatePassword = async (token, { password }) => {
     return await fetch(`${import.meta.env.VITE_API_PATH}/users/current`, {
         method: "PATCH",
