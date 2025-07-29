@@ -8,7 +8,7 @@ export default function UserLogin() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
-    const [_, setToken] = useLocalStorage("token");
+    const [_, setToken] = useLocalStorage("token", "");
 
     async function handleSubmit(e) {
         e.preventDefault();
