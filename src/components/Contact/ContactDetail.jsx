@@ -24,6 +24,7 @@ export default function ContactDetail() {
     useEffectOnce(() => {
         fetchContact().then(() => console.log("Contact fetched successfully"));
     });
+
     return (
         <>
             <div className="flex items-center mb-6">
@@ -106,8 +107,8 @@ export default function ContactDetail() {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                             {/* Add Address Card */}
                             <div className="bg-gray-700 bg-opacity-50 p-5 rounded-lg border-2 border-dashed border-gray-600 shadow-md card-hover">
-                                <a
-                                    href="add_address.html"
+                                <Link
+                                    to={`/dashboard/contacts/${id}/addresses/create`}
                                     className="block h-full"
                                 >
                                     <div className="flex flex-col items-center justify-center h-full text-center py-4">
@@ -118,7 +119,7 @@ export default function ContactDetail() {
                                             Add Address
                                         </h4>
                                     </div>
-                                </a>
+                                </Link>
                             </div>
                             {/* Address Card 1 */}
                             <div className="bg-gray-700 bg-opacity-50 p-5 rounded-lg shadow-md border border-gray-600 card-hover">
