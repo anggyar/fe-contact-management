@@ -41,7 +41,7 @@ export default function AddressCreate() {
 
     async function fetchContact() {
         const response = await contactDetail(token, id);
-        const responseBody = response.json();
+        const responseBody = await response.json();
         console.log(responseBody);
 
         if (response.status === 200) {
@@ -83,7 +83,7 @@ export default function AddressCreate() {
                                     {contact.first_name} {contact.last_name}
                                 </h2>
                                 <p className="text-gray-300 text-sm">
-                                    {contact.email} {contact.phone}
+                                    {contact.email} • {contact.phone}
                                 </p>
                             </div>
                         </div>

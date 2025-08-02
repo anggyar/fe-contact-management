@@ -4,7 +4,7 @@ export const addressCreate = async (
     { street, city, province, country, postal_code }
 ) => {
     return await fetch(
-        `${import.meta.env.VITE_API_URL}/contacts/${id}/addresses`,
+        `${import.meta.env.VITE_API_PATH}/contacts/${id}/addresses`,
         {
             method: "POST",
             headers: {
@@ -19,6 +19,19 @@ export const addressCreate = async (
                 country,
                 postal_code,
             }),
+        }
+    );
+};
+
+export const addressList = async (token, id) => {
+    return await fetch(
+        `${import.meta.env.VITE_API_PATH}/contacts/${id}/addresses`,
+        {
+            method: "GET",
+            headers: {
+                Accept: "application/json",
+                Authorization: token,
+            },
         }
     );
 };
