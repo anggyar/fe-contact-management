@@ -35,3 +35,45 @@ export const addressList = async (token, id) => {
         }
     );
 };
+
+export const addressUpdate = async (
+    token,
+    id,
+    { addressId, street, city, province, country, postal_code }
+) => {
+    return await fetch(
+        `${
+            import.meta.env.VITE_API_PATH
+        }/contacts/${id}/addresses/${addressId}`,
+        {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: token,
+                Accept: "application/json",
+            },
+            body: JSON.stringify({
+                street,
+                city,
+                province,
+                country,
+                postal_code,
+            }),
+        }
+    );
+};
+
+export const addressDetail = async (token, id, addressId) => {
+    return await fetch(
+        `${
+            import.meta.env.VITE_API_PATH
+        }/contacts/${id}/addresses/${addressId}`,
+        {
+            method: "GET",
+            headers: {
+                Authorization: token,
+                Accept: "application/json",
+            },
+        }
+    );
+};
