@@ -15,6 +15,9 @@ import ContactDetail from "./components/Contact/ContactDetail.jsx";
 import AddressCreate from "./components/Address/AddressCreate.jsx";
 import AddressEdit from "./components/Address/AddressEdit.jsx";
 
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import Redirect from "./components/Redirect.jsx";
+
 createRoot(document.getElementById("root")).render(
     <StrictMode>
         <BrowserRouter>
@@ -26,28 +29,31 @@ createRoot(document.getElementById("root")).render(
                 </Route>
 
                 {/* SUDAH LOGIN */}
-                <Route path="/dashboard" element={<DashboardLayout />}>
-                    <Route path="users">
-                        <Route path="profile" element={<UserProfile />} />
-                        <Route path="logout" element={<UserLogout />} />
-                    </Route>
+                <Route element={<ProtectedRoute />}>
+                    <Route path="/" element={<Redirect />} />
+                    <Route path="/dashboard" element={<DashboardLayout />}>
+                        <Route path="users">
+                            <Route path="profile" element={<UserProfile />} />
+                            <Route path="logout" element={<UserLogout />} />
+                        </Route>
 
-                    {/* Contact */}
-                    <Route path="contacts">
-                        <Route index element={<ContactList />} />
-                        <Route path="create" element={<ContactCreate />} />
-                        <Route path=":id">
-                            <Route index element={<ContactDetail />} />
-                            <Route path="edit" element={<ContactEdit />} />
-                            <Route path="addresses">
-                                <Route
-                                    path="create"
-                                    element={<AddressCreate />}
-                                />
-                                <Route
-                                    path=":addressId/edit"
-                                    element={<AddressEdit />}
-                                />
+                        {/* Contact */}
+                        <Route path="contacts">
+                            <Route index element={<ContactList />} />
+                            <Route path="create" element={<ContactCreate />} />
+                            <Route path=":id">
+                                <Route index element={<ContactDetail />} />
+                                <Route path="edit" element={<ContactEdit />} />
+                                <Route path="addresses">
+                                    <Route
+                                        path="create"
+                                        element={<AddressCreate />}
+                                    />
+                                    <Route
+                                        path=":addressId/edit"
+                                        element={<AddressEdit />}
+                                    />
+                                </Route>
                             </Route>
                         </Route>
                     </Route>
